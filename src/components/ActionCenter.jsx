@@ -1,58 +1,83 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { X, CheckCircle2, Globe, Mail, User, MessageSquare, Loader2 } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
+import { X, CheckCircle2, Loader2 } from "lucide-react";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase";
 
 const ActionCenter = ({ isOpen, onClose }) => {
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    website: '',
-    message: '',
+    name: "",
+    email: "",
+    website: "",
+    message: "",
   });
+
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef(null);
 
+  // Lock scroll + focus modal
   useEffect(() => {
     if (!isOpen) return;
 
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     setTimeout(() => containerRef.current?.focus(), 50);
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
-  const handleSubmit = (e) => {
+  // Single change handler
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Firestore submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const subject = 'Free Website Review — Elevates';
-    const body = `
-Name: ${form.name}
-Email: ${form.email}
-Website: ${form.website}
+    try {
+      await addDoc(collection(db, "leads"), {
+        name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        website: form.website.trim(),
+        message: form.message.trim(),
+        createdAt: serverTimestamp(),
+        source: "free-website-review",
+      });
 
-Message:
-${form.message || 'No additional message'}
-    `;
-
-    window.location.href = `mailto:helloelevatesweb@gmail.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-
-    setTimeout(() => {
-      setIsLoading(false);
       setSubmitted(true);
-    }, 400);
+      setForm({
+        name: "",
+        email: "",
+        website: "",
+        message: "",
+      });
+
+    } catch (error) {
+      console.error("Firestore Error:", error);
+      alert("Something went wrong. Please try again.");
+    }
+
+    setIsLoading(false);
   };
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-md" onClick={onClose} />
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+        onClick={onClose}
+      />
 
+      {/* Modal */}
       <div
         ref={containerRef}
         tabIndex={-1}
@@ -68,48 +93,57 @@ ${form.message || 'No additional message'}
         {!submitted ? (
           <form onSubmit={handleSubmit} className="space-y-4">
             <h3 className="text-3xl font-extrabold text-slate-900">
-              Get Your <span className="text-[#7F2CCB]">Free Website Review</span>
+              Get Your{" "}
+              <span className="text-[#7F2CCB]">Free Website Review</span>
             </h3>
 
             <input
+              name="name"
               required
               placeholder="Your Name"
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={handleChange}
               className="w-full p-3 border rounded-xl"
             />
 
             <input
+              name="email"
               required
               type="email"
               placeholder="Email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={handleChange}
               className="w-full p-3 border rounded-xl"
             />
 
             <input
+              name="website"
               required
               type="url"
               placeholder="Website URL"
               value={form.website}
-              onChange={(e) => setForm({ ...form, website: e.target.value })}
+              onChange={handleChange}
               className="w-full p-3 border rounded-xl"
             />
 
             <textarea
+              name="message"
               placeholder="Anything specific?"
               value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              onChange={handleChange}
               className="w-full p-3 border rounded-xl"
             />
 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#B8A8FF] py-3 rounded-xl font-bold"
+              className="w-full bg-[#B8A8FF] py-3 rounded-xl font-bold flex justify-center"
             >
-              {isLoading ? <Loader2 className="animate-spin mx-auto" /> : 'Send My Review'}
+              {isLoading ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                "Send My Review"
+              )}
             </button>
           </form>
         ) : (
@@ -117,7 +151,10 @@ ${form.message || 'No additional message'}
             <CheckCircle2 className="mx-auto text-green-500" size={48} />
             <h3 className="text-2xl font-bold">Request Sent!</h3>
             <p>I’ll get back to you within 24 hours.</p>
-            <button onClick={onClose} className="px-6 py-2 bg-black text-white rounded-xl">
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-black text-white rounded-xl"
+            >
               Close
             </button>
           </div>
