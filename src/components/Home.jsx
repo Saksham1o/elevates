@@ -23,7 +23,7 @@ const Home = () => {
               <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#B8A8FF]/15 rounded-full blur-3xl animate-pulse hidden sm:block"></div>
               
               {/* Image Container: Removed fixed w-[500px] and added max-w-lg */}
-              <div className="relative w-[550px] mx-auto max-w-[450px] md:max-w-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white bg-slate-50 transform transition-transform duration-700 group-hover:scale-[1.01]">
+              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-full mx-auto rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white bg-slate-50">
                 <img 
                   src="https://i.ibb.co/XxQ1c0rP/saksh.png"  
                   alt="Founder" 
@@ -32,7 +32,7 @@ const Home = () => {
                 />
                 
                 {/* Floating Trust Card - Hidden on extra small mobile */}
-                <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-xl border border-white/50 animate-bounce-slow">
+                <div className="hidden sm:block absolute bottom-4 right-4 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-xl border border-white/50 animate-bounce-slow">
                   <div className="flex items-center gap-2 sm:gap-3">
                     <div className="flex -space-x-2">
                       {[1, 2, 3].map(i => (
@@ -50,7 +50,7 @@ const Home = () => {
               </div>
 
               {/* Accent Border Frame - Moves with the container */}
-              <div className="absolute inset-0 max-w-[450px] md:max-w-full mx-auto md:ml-0 border-2 border-[#B8A8FF]/60 rounded-[2rem] translate-x-3 translate-y-3 sm:translate-x-4 sm:translate-y-4 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-500"></div>
+              <div className="hidden md:block absolute inset-0 border-2 border-[#B8A8FF]/60 rounded-[2rem] translate-x-4 translate-y-4 -z-10"></div>
             </div>
 
             {/* Right Side: Content - Mobile Optimized Typography */}

@@ -97,7 +97,7 @@ const Process = () => {
         {/* Final Reassurance */}
         <div className="mt-20 p-8 rounded-[2.5rem] bg-slate-900 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#7F2CCB]/20 rounded-full blur-[80px]"></div>
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
             <div className="space-y-2 text-center md:text-left">
               <h4 className="text-2xl font-bold">Ready to start your upgrade?</h4>
               <p className="text-slate-400 max-w-md">

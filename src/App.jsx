@@ -9,30 +9,34 @@ import ActionCenter from "./components/ActionCenter";
 import { useState } from "react";
 
 const App = () => {
-
   const [isActionOpen, setIsActionOpen] = useState(false);
   const openActionCenter = () => setIsActionOpen(true);
   const closeActionCenter = () => setIsActionOpen(false);
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <Header />
       <Home />
-      <section id="services">
+
+      <section id="services" className="scroll-mt-24">
         <Service />
       </section>
-      <section id="work">
+
+      <section id="work" className="scroll-mt-24">
         <Process />
       </section>
-      <section id="about">
+
+      <section id="about" className="scroll-mt-24">
         <Casestudies />
       </section>
-      <section id="contact">
+
+      <section id="contact" className="scroll-mt-24">
         <CTA onCtaClick={openActionCenter} />
       </section>
+
       <ActionCenter isOpen={isActionOpen} onClose={closeActionCenter} />
       <Footer onCtaClick={openActionCenter} />
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ const Footer = ({ onCtaClick }) => {
   return (
     <footer className="bg-white border-t border-slate-100 pt-16 pb-8 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Left Block: Brand (4 Columns) */}
           <div className="md:col-span-4 space-y-6">

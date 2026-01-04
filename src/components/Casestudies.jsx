@@ -43,7 +43,7 @@ const CaseStudies = () => {
   ];
 
   return (
-    <section className="py-24 px-6 bg-slate-50" id="work">
+    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-slate-50" id="work">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
@@ -51,7 +51,7 @@ const CaseStudies = () => {
           <span className="inline-block px-4 py-1.5 rounded-full bg-[#B8A8FF]/15 text-[#7F2CCB] font-bold text-xs tracking-widest uppercase border border-[#B8A8FF]/30">
             Our Portfolio
           </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
             Website Redesign <span className="text-[#7F2CCB]">Examples</span>
           </h2>
           <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium">

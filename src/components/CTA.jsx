@@ -12,7 +12,7 @@ const FinalCTA = ({ onCtaClick }) => {
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#7F2CCB]/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#B8A8FF]/20 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
           
-          <div className="relative z-10 p-10 md:p-16 text-center space-y-8">
+          <div className="relative z-10 p-6 sm:p-10 md:p-16 text-center space-y-6 sm:space-y-8">
             {/* Top Badge */}
             <div className="flex justify-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-[#B8A8FF] font-bold text-xs uppercase tracking-widest backdrop-blur-md">
@@ -33,7 +33,7 @@ const FinalCTA = ({ onCtaClick }) => {
 
             {/* Action Area */}
             <div className="flex flex-col items-center gap-6 pt-4">
-              <button className="group w-full sm:w-auto relative bg-[#B8A8FF] text-black font-black px-10 py-5 rounded-2xl text-lg flex items-center justify-center gap-3 transition-all duration-300 hover:bg-white hover:scale-105 hover:shadow-[0_0_30px_rgba(184,168,255,0.4)]"
+              <button className="group w-full sm:w-auto relative bg-[#B8A8FF] text-black font-black px-10 py-5 rounded-2xl text-lg flex items-center justify-center gap-3 transition-all duration-300 hover:bg-white hover:bg-white sm:hover:scale-105 hover:shadow-[0_0_30px_rgba(184,168,255,0.4)]"
               onClick={onCtaClick}>
                 Fix My Website
                 <MousePointer2 size={22} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

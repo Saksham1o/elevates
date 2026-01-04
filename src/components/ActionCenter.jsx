@@ -56,7 +56,7 @@ ${form.message || 'No additional message'}
       <div
         ref={containerRef}
         tabIndex={-1}
-        className="relative z-10 w-full max-w-xl bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-12"
+        className="relative z-10 w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-[2.5rem] shadow-2xl p-6 sm:p-8 md:p-12"
       >
         <button
           onClick={onClose}
