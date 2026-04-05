@@ -1,113 +1,112 @@
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useState } from "react";
+import { Menu, X, Zap } from "lucide-react";
 
-const Header = () => {
+const Header = ({ onCtaClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navLinks = ["Services", "Work", "About", "Contact"];
-
   return (
-    <div className="bg-slate-50 pt-20">
-      {/* Header Container */}
-      <nav className="flex items-center justify-between p-3 md:px-10 fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
-
-        {/* Logo Section */}
-        <a href="#top" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-[#B8A8FF] rounded-lg flex items-center justify-center">
-            <div className="w-4 h-4 border-2 border-white rotate-45"></div>
+    <>
+      {/* NAVBAR */}
+      <nav className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-[100] glass-card rounded-2xl px-4 md:px-6 py-3 flex items-center justify-between">
+        {/* Logo */}
+        <a href="#top" className="flex items-center gap-2 group">
+          <div className="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-tr from-[#7F2CCB] to-[#B8A8FF] rounded-xl flex items-center justify-center rotate-3 group-hover:rotate-12 transition-transform">
+            <Zap size={18} className="text-white fill-white" />
           </div>
-          <h1 className="text-black text-lg md:text-2xl font-bold tracking-tight">
-            Elevates Co.
-          </h1>
+          <span className="text-lg md:text-xl font-black tracking-tighter text-white">
+            ELEVATES<span className="text-[#B8A8FF]">.</span>
+          </span>
         </a>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center gap-9">
-          {navLinks.map((link) => {
-            const sectionId = link.toLowerCase();
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
+          {["Services", "Work", "Process"].map((link) => (
+            <li key={link}>
+              <a
+                href={`#${link.toLowerCase()}`}
+                className="hover:text-[#B8A8FF] transition-colors"
+              >
+                {link}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-            return (
-              <li key={link}>
+        {/* Desktop CTA */}
+        <button
+          onClick={onCtaClick}
+          className="hidden md:block bg-white text-black px-5 py-2 rounded-xl font-bold text-sm hover:bg-[#B8A8FF] transition-all active:scale-95"
+        >
+          Let's Talk
+        </button>
+
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden text-white"
+        >
+          {isMenuOpen ? <X /> : <Menu />}
+        </button>
+      </nav>
+
+      {/* MOBILE MENU */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-md">
+          {/* Drawer */}
+          <div className="absolute top-0 left-0 w-full rounded-b-3xl p-6 border-b border-white/10 bg-[#030712]">
+            {/* Top Row (NO GLOW / NO EFFECTS) */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-2">
+                {/* NORMAL ICON (no rotation / no glow) */}
+                <div className="w-9 h-9 bg-[#7F2CCB] rounded-xl flex items-center justify-center">
+                  <Zap size={16} className="text-white" />
+                </div>
+
+                {/* NORMAL TEXT */}
+                <span className="text-lg font-bold text-white tracking-tight">
+                  ELEVATES<span className="text-[#B8A8FF]">.</span>
+                </span>
+              </div>
+
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="text-white"
+              >
+                <X />
+              </button>
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-col gap-6 text-lg font-medium text-white/70">
+              {["Services", "Work", "About", "Contact"].map((link) => (
                 <a
-                  href={`#${sectionId}`}
-                  className="
-                    text-gray-500
-                    hover:text-black
-                    transition-colors
-                    duration-200
-                    relative
-                    after:absolute
-                    after:-bottom-1
-                    after:left-0
-                    after:w-0
-                    after:h-[2px]
-                    after:bg-[#B8A8FF]
-                    after:transition-all
-                    after:duration-300
-                    hover:after:w-full
-                  "
+                  key={link}
+                  href={`#${link.toLowerCase()}`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="hover:text-white transition-colors"
                 >
                   {link}
                 </a>
-              </li>
-            );
-          })}
-        </ul>
+              ))}
+            </div>
 
-        {/* Right Side Actions */}
-        <div className="flex items-center gap-4">
-          {/* CTA Button */}
-          <a href="#contact" className="hidden sm:block">
-            <button className="relative bg-[#B8A8FF] text-black font-semibold px-4 py-2 rounded-lg transition-all duration-300 ease-out hover:bg-[#7F2CCB] hover:text-white hover:-translate-y-[2px] hover:shadow-lg hover:shadow-[#7F2CCB]/30 focus:outline-none focus:ring-2 focus:ring-[#B8A8FF] focus:ring-offset-2">
+            {/* Divider */}
+            <div className="my-8 border-t border-white/10" />
+
+            {/* CTA */}
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                onCtaClick();
+              }}
+              className="w-full bg-[#B8A8FF] text-black font-bold py-4 rounded-2xl"
+            >
               Get Started
             </button>
-          </a>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-gray-600 hover:text-black transition-colors"
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          </div>
         </div>
-
-        {/* Mobile Dropdown Menu */}
-        <div
-          className={`absolute top-full left-0 w-full bg-white border-b border-gray-100 transition-all duration-300 ease-in-out overflow-hidden md:hidden ${
-            isMenuOpen
-              ? 'max-h-[400px] opacity-100'
-              : 'max-h-0 opacity-0 pointer-events-none'
-          }`}
-        >
-          <ul className="flex flex-col p-6 gap-4">
-            {navLinks.map((link) => {
-              const sectionId = link.toLowerCase();
-
-              return (
-                <li key={link}>
-                  <a
-                    href={`#${sectionId}`}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block text-xl font-medium text-gray-600 hover:text-[#7F2CCB] transition-colors"
-                  >
-                    {link}
-                  </a>
-                </li>
-              );
-            })}
-
-            <li className="pt-4 border-t border-gray-100">
-              <a href="#contact" onClick={() => setIsMenuOpen(false)}>
-                <button className="w-full bg-[#B8A8FF] text-black font-semibold py-3 rounded-xl">
-                  Get Started
-                </button>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+      )}
+    </>
   );
 };
 

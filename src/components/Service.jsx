@@ -1,97 +1,91 @@
-import React from 'react';
 import { Monitor, Zap, Target, ArrowUpRight } from 'lucide-react';
 
 const Services = () => {
   const serviceData = [
     {
       title: "Website Redesign & Modernization",
-      description: "Outdated websites hurt trust and conversions. We redesign your site to look modern, professional, and credible so your business reflects the quality you actually provide.",
-      icon: <Monitor className="w-8 h-8 text-[#7F2CCB]" />,
-      outcome: "Build instant trust"
+      description: "Modern, credible websites that reflect your actual business quality.",
+      icon: Monitor,
+      outcome: "Build trust"
     },
     {
-      title: "Performance & Mobile Optimization",
-      description: "Fast-loading, mobile-first websites that keep visitors engaged. We ensure your site works perfectly on every device, reducing bounce rates and keeping users on your page.",
-      icon: <Zap className="w-8 h-8 text-[#7F2CCB]" />,
-      outcome: "Stop losing mobile leads"
+      title: "Performance Optimization",
+      description: "Fast-loading, mobile-first experience across all devices.",
+      icon: Zap,
+      outcome: "Keep users engaged"
     },
     {
-      title: "Conversion-Focused Layouts",
-      description: "Clear messaging and strong structures designed to turn casual visitors into inquiries. We guide your customers toward a clear action so your website actually makes you money.",
-      icon: <Target className="w-8 h-8 text-[#7F2CCB]" />,
-      outcome: "Turn traffic into customers"
+      title: "Conversion Layouts",
+      description: "Design that turns visitors into leads and customers.",
+      icon: Target,
+      outcome: "Increase conversions"
     }
   ];
 
   return (
-    <section className="py-20 px-6 bg-slate-50/50" id="services">
+    <section className="py-16 md:py-24 px-4 md:px-6 bg-[#030712]" id="services">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Section Header */}
-        <div className="text-center mb-16 space-y-4">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#B8A8FF]/15 text-[#7F2CCB] font-bold text-xs tracking-widest uppercase border border-[#B8A8FF]/30">
-            Our Solutions
+
+        <div className="text-center mb-12 md:mb-20">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#B8A8FF]/10 text-[#B8A8FF] text-[10px] md:text-xs font-bold uppercase border border-[#B8A8FF]/20 animate-fade-in">
+            High-Performance Solutions
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Services Designed to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7F2CCB] to-[#B8A8FF]">Elevate Your Website</span>
+
+          <h2 className="text-3xl md:text-6xl font-black text-white mt-4">
+            Services to{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7F2CCB] to-[#B8A8FF] animate-pulse">
+              Scale Your Business
+            </span>
           </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
-            We focus on the results that matter: credibility, speed, and growth. No tech-talk, just a website that works for your business.
-          </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {serviceData.map((service, index) => (
+            
             <div 
-              key={index}
-              className="group relative bg-white p-8 rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-[#B8A8FF]/20 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+              key={index} 
+              className="group relative glass-card p-6 md:p-10 rounded-[2rem] border border-white/5 overflow-hidden 
+              transition-all duration-500 
+              hover:-translate-y-3 hover:scale-[1.02] 
+              hover:border-[#B8A8FF]/30 
+              hover:shadow-[0_0_40px_rgba(184,168,255,0.15)]"
             >
-              {/* Background Accent Gradient */}
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#B8A8FF]/5 rounded-full blur-3xl group-hover:bg-[#B8A8FF]/20 transition-colors duration-500"></div>
-              
-              {/* Icon Container */}
-              <div className="w-16 h-16 bg-[#B8A8FF]/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#B8A8FF] group-hover:rotate-6 transition-all duration-500">
-                <div className="group-hover:text-white transition-colors duration-500">
-                  {service.icon}
-                </div>
+
+              {/* 🔥 Glow Effect */}
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#7F2CCB]/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-all duration-700" />
+
+              {/* ICON */}
+              <div className="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 border border-white/10 
+              transition-all duration-500 
+              group-hover:bg-[#B8A8FF] 
+              group-hover:rotate-6 
+              group-hover:shadow-[0_0_20px_rgba(184,168,255,0.4)]">
+
+                <service.icon className="w-6 h-6 text-[#B8A8FF] transition-all duration-500 group-hover:text-black group-hover:scale-110" />
               </div>
 
-              {/* Content */}
-              <div className="space-y-4 relative z-10">
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#7F2CCB] transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-slate-500 leading-relaxed text-sm sm:text-base">
-                  {service.description}
-                </p>
-                
-                {/* Outcome Badge */}
-                <div className="pt-4 flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[#7F2CCB] font-bold text-xs uppercase tracking-wider">
-                    <ArrowUpRight size={16} />
-                    <span className='cursor-pointer' onClick={() => {window.location.href = "#contact"}}>{service.outcome}</span>
-                  </div>
-                </div>
+              {/* TITLE */}
+              <h3 className="text-lg md:text-2xl font-bold text-white mb-3 transition-colors duration-300 group-hover:text-[#B8A8FF]">
+                {service.title}
+              </h3>
+
+              {/* DESC */}
+              <p className="text-slate-400 text-sm mb-6 transition-all duration-300 group-hover:text-slate-300">
+                {service.description}
+              </p>
+
+              {/* CTA */}
+              <div className="flex items-center gap-2 text-[#B8A8FF] text-xs font-bold uppercase tracking-wider 
+              transition-all duration-300 group-hover:gap-3">
+
+                <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                {service.outcome}
               </div>
 
-              {/* Bottom Interactive Line */}
-              <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-gradient-to-r from-[#7F2CCB] to-[#B8A8FF] group-hover:w-full transition-all duration-700"></div>
             </div>
           ))}
         </div>
 
-        {/* Bottom CTA Hook */}
-        <div className="mt-16 text-center">
-          <p className="text-slate-400 font-medium mb-6 italic">
-            "Simple, effective, and built to grow your bottom line."
-          </p>
-          <button className="inline-flex items-center gap-2 text-slate-900 font-bold hover:text-[#7F2CCB] transition-colors group"
-          onClick={() => window.location.href = "#work"}>
-            Learn more about our process 
-            <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </button>
-        </div>
       </div>
     </section>
   );

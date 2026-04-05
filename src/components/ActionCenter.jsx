@@ -71,30 +71,30 @@ const ActionCenter = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      {/* Backdrop */}
+      {/* Backdrop - Darker for more focus */}
       <div
-        className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+        className="absolute inset-0 bg-[#030712]/80 backdrop-blur-xl"
         onClick={onClose}
       />
 
-      {/* Modal */}
+      {/* Modal - Dark Glassmorphism style */}
       <div
         ref={containerRef}
         tabIndex={-1}
-        className="relative z-10 w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-[2.5rem] shadow-2xl p-6 sm:p-8 md:p-12"
+        className="relative z-10 w-full max-w-xl max-h-[90vh] overflow-y-auto bg-[#0f172a] border border-white/10 rounded-[2.5rem] shadow-2xl p-6 sm:p-8 md:p-12"
       >
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-900"
+          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-white transition-colors"
         >
           <X size={24} />
         </button>
 
         {!submitted ? (
           <form onSubmit={handleSubmit} className="space-y-4">
-            <h3 className="text-3xl font-extrabold text-slate-900">
+            <h3 className="text-3xl font-extrabold text-white">
               Get Your{" "}
-              <span className="text-[#7F2CCB]">Free Website Review</span>
+              <span className="text-[#B8A8FF]">Free Website Review</span>
             </h3>
 
             <input
@@ -103,7 +103,7 @@ const ActionCenter = ({ isOpen, onClose }) => {
               placeholder="Your Name"
               value={form.name}
               onChange={handleChange}
-              className="w-full p-3 border rounded-xl"
+              className="w-full p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-[#B8A8FF] transition-colors"
             />
 
             <input
@@ -113,7 +113,7 @@ const ActionCenter = ({ isOpen, onClose }) => {
               placeholder="Email"
               value={form.email}
               onChange={handleChange}
-              className="w-full p-3 border rounded-xl"
+              className="w-full p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-[#B8A8FF] transition-colors"
             />
 
             <input
@@ -123,7 +123,7 @@ const ActionCenter = ({ isOpen, onClose }) => {
               placeholder="Website URL"
               value={form.website}
               onChange={handleChange}
-              className="w-full p-3 border rounded-xl"
+              className="w-full p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-[#B8A8FF] transition-colors"
             />
 
             <textarea
@@ -131,13 +131,13 @@ const ActionCenter = ({ isOpen, onClose }) => {
               placeholder="Anything specific?"
               value={form.message}
               onChange={handleChange}
-              className="w-full p-3 border rounded-xl"
+              className="w-full p-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-[#B8A8FF] transition-colors min-h-[100px]"
             />
 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#B8A8FF] py-3 rounded-xl font-bold flex justify-center"
+              className="w-full bg-[#B8A8FF] text-black hover:bg-white py-3 rounded-xl font-black flex justify-center transition-all active:scale-95 disabled:opacity-50"
             >
               {isLoading ? (
                 <Loader2 className="animate-spin" />
@@ -147,13 +147,13 @@ const ActionCenter = ({ isOpen, onClose }) => {
             </button>
           </form>
         ) : (
-          <div className="text-center space-y-4">
-            <CheckCircle2 className="mx-auto text-green-500" size={48} />
-            <h3 className="text-2xl font-bold">Request Sent!</h3>
-            <p>I’ll get back to you within 24 hours.</p>
+          <div className="text-center space-y-4 py-6">
+            <CheckCircle2 className="mx-auto text-green-400" size={64} />
+            <h3 className="text-2xl font-bold text-white">Request Sent!</h3>
+            <p className="text-slate-400 font-medium">I’ll get back to you within 24 hours.</p>
             <button
               onClick={onClose}
-              className="px-6 py-2 bg-black text-white rounded-xl"
+              className="px-8 py-3 bg-[#B8A8FF] text-black font-bold rounded-xl transition-transform hover:scale-105 active:scale-95"
             >
               Close
             </button>

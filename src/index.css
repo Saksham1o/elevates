@@ -1,3 +1,77 @@
 html {
   scroll-behavior: smooth;
 }
+
+@layer base {
+  body {
+    @apply bg-[#030712] text-slate-300;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+.glass-card {
+  @apply bg-slate-900/40 backdrop-blur-xl border border-white/5 shadow-2xl;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-200 to-slate-500;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #030712; /* Prevents white flash on scroll */
+  }
+  body {
+    @apply bg-[#030712] text-slate-300;
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom Utilities for the Unique Look */
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-200 to-[#B8A8FF];
+  }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+/* Glass Card Global Style */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background: rgba(184, 168, 255, 0.1);
+  border-radius: 10px;
+}
+
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
